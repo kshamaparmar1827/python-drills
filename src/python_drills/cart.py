@@ -1,10 +1,31 @@
-from src.python_drills.product import Product
+from python_drills.product import Product
 
 
 class Cart:
-    def __init__(self):
+    def __init__(self) -> None:
         self.cart_items: dict[str, list[Product | int]] = {}
         self.discount: int = 0
+
+    def __repr__(self):
+        total_qty = 0
+        for product, qty in self.cart_items.values():
+            total_qty += qty
+
+        return (
+            f"Cart(items={total_qty}, total={self.total()}, discount={self.discount})"
+        )
+
+    def __eq__(self, value: object):
+        if not isinstance(value, Cart):
+            return NotImplemented
+        return self.cart_items == value.cart_items and self.discount == value.discount
+
+    @property
+    def item_count(self):
+        total_qty = 0
+        for product, qty in self.cart_items.values():
+            total_qty += qty
+        return total_qty
 
     def add_item(self, product: Product, quantity: int = 1) -> None:
 
