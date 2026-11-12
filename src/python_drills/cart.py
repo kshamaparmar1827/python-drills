@@ -1,3 +1,4 @@
+from python_drills.exceptions import InvalidDiscountError, OutOfStockError
 from python_drills.product import Product
 
 
@@ -32,8 +33,12 @@ class Cart:
         sku = product.sku
         if self.cart_items.get(sku, None):
             # if sku in self.cart_items:
+            if product.qty < self.cart_items.get(sku)[1] + quantity:
+                raise OutOfStockError()
             self.cart_items.get(sku)[1] += quantity
         else:
+            if product.qty < quantity:
+                raise OutOfStockError()
             self.cart_items[sku] = [product, quantity]
 
     def remove_item(self, sku: str):
@@ -42,6 +47,8 @@ class Cart:
             del self.cart_items[sku]
 
     def apply_discount(self, percent: int):
+        if percent < 0 or percent > 100:
+            raise InvalidDiscountError()
         self.discount = percent
 
     def total(self) -> float:
