@@ -2,29 +2,25 @@ import pytest
 
 from python_drills.cart import Cart
 from python_drills.exceptions import InvalidDiscountError, OutOfStockError
-from python_drills.product import Product
 
 
-def test_add_item_raises():
-    product1 = Product("SKU-1", "Mug", 12.50, 10)
+def test_add_item_raises(mug):
     my_cart = Cart()
     with pytest.raises(OutOfStockError):
-        my_cart.add_item(product1, 11)
+        my_cart.add_item(mug, 11)
 
 
-def test_add_item_raises_at_second_add():
-    product1 = Product("SKU-1", "Mug", 12.50, 10)
+def test_add_item_raises_at_second_add(mug):
     my_cart = Cart()
-    my_cart.add_item(product1, 8)
+    my_cart.add_item(mug, 8)
     with pytest.raises(OutOfStockError):
-        my_cart.add_item(product1, 3)
+        my_cart.add_item(mug, 3)
     assert my_cart.item_count == 8
 
 
-def test_add_item():
-    product1 = Product("SKU-1", "Mug", 12.50, 10)
+def test_add_item(mug):
     my_cart = Cart()
-    my_cart.add_item(product1, 10)
+    my_cart.add_item(mug, 10)
     assert my_cart.item_count == 10
 
 
