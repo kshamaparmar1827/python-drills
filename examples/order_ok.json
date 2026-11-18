@@ -1,0 +1,17 @@
+{
+    "order_id": "5001",
+    "customer_email": "asha@example.com",
+    "currency": "CAD",
+    "items": [
+        {
+            "sku": "SKU-1",
+            "quantity": 2,
+            "unit_price": "12.50"
+        },
+        {
+            "sku": "SKU-2",
+            "quantity": "1",
+            "unit_price": 5
+        }
+    ]
+}
