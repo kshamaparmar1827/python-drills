@@ -1,0 +1,17 @@
+{
+    "order_id": "abc",
+    "customer_email": "ABC",
+    "currency": "CAD",
+    "items": [
+        {
+            "sku": "SKU-1",
+            "quantity": 0,
+            "unit_price": "12.50"
+        },
+        {
+            "sku": "SKU-2",
+            "quantity": "1",
+            "unit_price": 5
+        }
+    ]
+}
